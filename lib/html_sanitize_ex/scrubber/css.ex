@@ -147,6 +147,10 @@ defmodule HtmlSanitizeEx.Scrubber.CSS do
   defp scrub_css("padding-" <> prop, val),
     do: validate({"padding-#{prop}", scrub_val(val)})
 
+  defp scrub_css("list-style-type", val) do
+    validate({"list-style-type", scrub_val(val)})
+  end
+
   defp scrub_css(_, _), do: nil
 
   defp validate({_property, ""}), do: nil
@@ -200,7 +204,14 @@ defmodule HtmlSanitizeEx.Scrubber.CSS do
     "transparent",
     "underline",
     "white",
-    "yellow"
+    "yellow",
+    "lower-alpha",
+    "upper-alpha",
+    "lower-roman",
+    "upper-roman",
+    "disc",
+    "circle",
+    "square"
   ]
 
   def allowed_keyword?(val) do
